@@ -11,10 +11,10 @@ io.on("connection", (socket) => {
   console.log("user connected");
   socket.on("clientMessage", (msg) => {
     console.log("received", msg);
-    socket.emit("message", `msg sent ${msg}`);
-    socket.broadcast.emit("message", `msg received ${msg}`);
+    socket.emit("message", { text: msg, timestamp: new Date() });
+    socket.broadcast.emit("message", { text: msg, timestamp: new Date() });
   });
-  socket.emit("message", "welcome!!!");
+  socket.emit("message", { text: "welcome!!!", timestamp: new Date() });
   socket.on("disconnect", () => {
     console.log("user disconnected");
   });

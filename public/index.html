@@ -30,11 +30,14 @@
             console.log('Connected to server');
         })
         socket.on('message', (data) => {
+            updateChatDiv(`${data.timestamp} - ${data.text}`);
+        })
+        function updateChatDiv(data) {
             const chatDiv = document.getElementById('chat');
             const messageElement = document.createElement('p');
             messageElement.textContent = data;
             chatDiv.appendChild(messageElement);
-        })
+        }
     </script>
 </body>
 </html>
