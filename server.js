@@ -11,7 +11,8 @@ io.on("connection", (socket) => {
   console.log("user connected");
   socket.on("clientMessage", (msg) => {
     console.log("received", msg);
-    socket.emit("message", `msg received ${msg}`);
+    socket.emit("message", `msg sent ${msg}`);
+    socket.broadcast.emit("message", `msg received ${msg}`);
   });
   socket.emit("message", "welcome!!!");
   socket.on("disconnect", () => {
